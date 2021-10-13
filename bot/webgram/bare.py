@@ -15,7 +15,7 @@ from telethon.sessions import StringSession
 class BareServer(Config, StreamTools):
     client: telethon.TelegramClient
     
-    def __init__(self, loop: asyncio.AbstractEventLoop):
+    def init(self, loop: asyncio.AbstractEventLoop):
         
         self.client = telethon.TelegramClient(
             StringSession(), #self.config.SESS_NAME,
@@ -29,14 +29,14 @@ class BareServer(Config, StreamTools):
         async def download(event : events.NewMessage.Event):
             if event.is_private :
                 try:
-                    await event.client(functions.channels.GetParticipantRequest(channel=self.config.channel,user_id=event.sender_id))
+                    await event.client(functions.channels.GetParticipantRequest(channel=self.config.channel,participant=event.sender_id))
                 except errors.UserNotParticipantError:
-                    await event.reply(f"First join to our official channel to access the bot or get the newest news about the bot\n\n@{self.config.channel}\n\nAfter that /start the bot aging.")
+                    await event.reply(f"برای حمایت از ما ابتدا در کانال ما عضو شوید🙏🏻😊\n\n@{self.config.channel}\n\nپس از عضویت دستور /start را ارسال کنید !.")
                     return
                 if event.file :
                     hash = self.encode(f"{event.sender_id}:{event.id}")
                     url = f"{hash}/{urllib.parse.quote(self.get_file_name(event))}"
-                    await event.reply(f"Link to download file: \n\n🌍 : {self.config.ROOT_URI}/w/{url}")
+                    await event.reply(f"لینک با موفقیت تولید شد⚡️!  :   {self.config.ROOT_URI}/w/{url}")
                     return
 
-                await event.reply("Send an image or file to get a link to download it")
+                await event.reply("✨خوش آمدید \n لطفا یک فایل برای من ارسال کنید تا آن را به لینک تبدیل کنم! \n 🚀 @RocketWorld")
