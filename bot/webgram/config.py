@@ -9,8 +9,8 @@ class Config:
         
         BOT_TOKEN = "2053666167:AAEwOy6P_4nAoJBOedS-IbMFA8fOcoUSVuE"
                 
-        channel = 'UserlandApp'
+        channel = 'rocketworld'
         
-        ROOT_URI = f"http://rocketdrivebot.herokuapp.com"
+        ROOT_URI = f"http://tgdr989.herokuapp.com"
 
         ENCODING = "utf8"
